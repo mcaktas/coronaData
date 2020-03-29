@@ -40,7 +40,7 @@ def myAppend(total,inputArray,appendWay):
 def getCountryCode(country):
     with open("Country Codes.json", "r") as read_it: 
         countryData = json.load(read_it)
-        for i in range(1,251):
+        for i in range(0,251):
             currentCountryData = countryData[i]
             if currentCountryData["Country_Name"] == country:
                 return currentCountryData["ISO3166_1_Alpha_2"]
@@ -49,16 +49,16 @@ def getPopulation(country):
     with open("Population Data.json", "r") as read_it: 
         countryData = json.load(read_it)
         countryData = countryData["data"]
-        for i in range(1,251):
+        for i in range(0,232):
             currentCountryData = countryData[i]
             if currentCountryData["name"] == country:
                 floatData = float(currentCountryData["pop2019"])*1000
                 return floatData
 
 ####################################################################USER INPUT########################################################
-countries = ["Italy","Turkey","Canada","Iran"]
+countries = ["Italy","Iran", "Germany", "China","South Korea"]
 confirmedNumber = 500 #if its zero its in "DAYS" mode
-perPopulation = 10000000 #if its zero it does not compare case numbers with population
+perPopulation = 100000 #if its zero it does not compare case numbers with population
 ####################################################################USER INPUT########################################################
 for currentCountry in countries:
     countryCode = getCountryCode(currentCountry)
@@ -80,7 +80,7 @@ for currentCountry in countries:
         data = data[0]
         timeSeriesData = data["timeseries"]
         currentDate = datetime.date(2020, 1, 2)
-        for x in range(1, 100):
+        for x in range(1, 300):
             stringDate = currentDate.strftime("%#m") + "/" + currentDate.strftime("%#d") + "/" + currentDate.strftime("%y") 
             #print(stringDate)
             if stringDate in timeSeriesData:
